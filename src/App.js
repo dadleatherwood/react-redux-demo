@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {addName} from './ducks/user'
+import Nav from './components/Nav/Nav'
+import Input from './components/Input/Input'
 import './App.css';
 
 class App extends Component {
   constructor() {
-     super() 
+     super()
      this.state = {
-
      }
-  }
-  componentDidMount() {
-   }
-  componentWillReceiveProps(nextProps) {
 
   }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('New Props',nextProps)
+  }
+
   render() {
-     console.log(this.props)
     return (
       <div className="App">
-         <h1>SWAPI Test</h1>
-
+         <Nav />
+         <h1>Hi there, {this.props.name}</h1>
+         <Input />
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps (state) {
+  return state
+}
+
+
+export default connect(mapStateToProps, {addName}) (App);
